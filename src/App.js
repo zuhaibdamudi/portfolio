@@ -151,6 +151,17 @@ export default function Portfolio() {
           transition: opacity 0.3s;
         }
 
+        /* Safe Area Cover for iOS */
+        .safe-area-cover {
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
+          height: env(safe-area-inset-top, 0px);
+          background: var(--bg-primary);
+          z-index: 1001;
+        }
+
         /* Navigation */
         nav {
           position: fixed;
@@ -167,6 +178,16 @@ export default function Portfolio() {
           transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
+        nav::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          height: calc(env(safe-area-inset-top, 0px) + 10px);
+          background: var(--bg-primary);
+        }
+
         nav.scrolled {
           padding: 1.5rem 4rem;
           padding-top: calc(1.5rem + env(safe-area-inset-top, 0px));
@@ -174,6 +195,10 @@ export default function Portfolio() {
           backdrop-filter: blur(20px);
           border-bottom: 1px solid var(--border);
           box-shadow: 0 4px 24px rgba(0, 0, 0, 0.03);
+        }
+
+        nav.scrolled::before {
+          background: rgba(250, 248, 243, 0.98);
         }
 
         .logo {
@@ -902,6 +927,10 @@ export default function Portfolio() {
             padding-bottom: 4rem;
           }
 
+          .hero::before {
+            display: none;
+          }
+
           .hero-content {
             grid-template-columns: 1fr;
             gap: 3rem;
@@ -953,13 +982,22 @@ export default function Portfolio() {
             justify-content: center;
             padding: 1rem 1.5rem;
             padding-top: calc(1rem + env(safe-area-inset-top, 0px));
-            background: rgba(250, 248, 243, 0.98);
-            backdrop-filter: blur(20px);
+            background: var(--bg-primary);
+          }
+
+          nav::before {
+            height: calc(env(safe-area-inset-top, 0px) + 20px);
+            background: var(--bg-primary);
           }
 
           nav.scrolled {
             padding: 0.75rem 1.5rem;
             padding-top: calc(0.75rem + env(safe-area-inset-top, 0px));
+            background: var(--bg-primary);
+          }
+
+          nav.scrolled::before {
+            background: var(--bg-primary);
           }
 
           .logo {
@@ -996,6 +1034,10 @@ export default function Portfolio() {
             padding-top: calc(120px + env(safe-area-inset-top, 0px));
             padding-bottom: 4rem;
             min-height: auto;
+          }
+
+          .hero::before {
+            display: none;
           }
 
           .hero-content {
@@ -1211,6 +1253,9 @@ export default function Portfolio() {
           }
         }
       `}</style>
+
+      {/* Safe Area Cover for iOS */}
+      <div className="safe-area-cover"></div>
 
       {/* Navigation */}
       <nav className={scrollY > 100 ? 'scrolled' : ''}>
