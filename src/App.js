@@ -1492,7 +1492,7 @@ export default function Portfolio() {
                   {/* Northeastern: Sep 2025 - Aug 2027 */}
                   <div className="timeline-entry current" style={{ top: '75.5%', height: '22%' }}>
                     <div className="timeline-entry-icon">
-                      <img src={process.env.PUBLIC_URL + "/northeastern-logo.png"} alt="Northeastern" />
+                      <img src={process.env.PUBLIC_URL + "/northeastern_university_logo.jpeg"} alt="Northeastern" />
                     </div>
                     <div className="timeline-entry-title">Masters in Computer Science</div>
                     <div className="timeline-entry-duration">Sep '25 - Aug '27</div>
