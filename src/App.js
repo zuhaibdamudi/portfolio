@@ -1,13 +1,27 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function Portfolio() {
+  const navigate = useNavigate();
   const [scrollY, setScrollY] = useState(0);
   const [activeSection, setActiveSection] = useState('about');
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
     // Set page title
-    document.title = "Mohammed Zuhaib Damudi";
+    document.title = "Zuhaib's Portfolio";
+    
+    // Restore scroll position if coming back from a project page
+    const savedScrollPosition = sessionStorage.getItem('portfolioScrollPosition');
+    if (savedScrollPosition) {
+      // Use requestAnimationFrame to ensure DOM is rendered before scrolling
+      requestAnimationFrame(() => {
+        setTimeout(() => {
+          window.scrollTo(0, parseInt(savedScrollPosition, 10));
+        }, 50);
+      });
+      sessionStorage.removeItem('portfolioScrollPosition');
+    }
     
     const handleScroll = () => setScrollY(window.scrollY);
     const handleMouseMove = (e) => {
@@ -25,34 +39,60 @@ export default function Portfolio() {
 
   const projects = [
     {
-      title: "Anomaly Detection in Brain MRI",
-      description: "Novel sampling approach using Denoising Diffusion Probabilistic Models for brain tumor detection with 200x faster inference and 66% improvement in segmentation metrics.",
-      tech: ["PyTorch", "Computer Vision", "Generative AI"],
-      date: "Jan 2023 - Jul 2023",
-      link: "https://doi.org/10.1155/ijbi/2352602",
-      highlight: "Published Research"
+      title: "Runnalytics: Strava Running Analytics Dashboard",
+      description: "End-to-end data pipeline to analyze exported Strava data with ML-based workout classification, heart rate/elevation correlation insights, and interactive dashboards tracking running improvement over time.",
+      tech: ["Python", "Flask", "JavaScript", "Data Analysis", "NumPy", "Pandas", "scikit-learn"],
+      date: "Dec 2025 - Jan 2026",
+      internalLink: "/projects/runnalytics",
+      highlight: "Data Analysis & Visualization"
     },
     {
-      title: "AI-Powered Code Converter",
-      description: "Patent-pending tool powered by GPT-4o that automates up to 80% of manual programming efforts, significantly improving developer productivity at Shell.",
-      tech: ["GPT-4o", "AI", "Automation"],
-      date: "2023 - 2025",
+      title: "LiftLog: Gym Management System",
+      description: "Relational database system to manage gym operations such as member workouts, and trainer-client interactions. Gym members log workouts and book appointments with specialized trainers, while trainers create personalized workout plans for their clients. Built with MySQL using 50+ stored procedures for workout tracking, progress monitoring, and automated membership management.",
+      tech: ["MySQL", "Python", "Django", "HTML/CSS", "JavaScript"],
+      date: "Oct 2025 - Dec 2025",
+      internalLink: "/projects/liftlog", 
+      highlight: "Database Design"
+    },
+    {
+      title: "AI-Powered Code Converter Tool",
+      description: "Contributed to a patent-pending tool powered by GPT-4o that automates up to 80% of manual programming efforts, significantly improving developer productivity at Shell.",
+      tech: ["AI", "LLMs", "GPT-4o", "Automation"],
+      date: "Dec 2024 - Mar 2025",
       highlight: "Patent Filed"
+    },
+    {
+      title: "Brain Tumor Detection using Denoising Diffusion Models",
+      description: "Developed a novel single-step sampling approach using Denoising Diffusion Probabilistic Models for brain tumor detection with 200x faster inference and 66% improvement in segmentation metrics. Published research article in the International Journal of Biomedical Imaging. ",
+      tech: ["PyTorch", "OpenCV", "Computer Vision", "Generative AI", "Diffusion Models", "Medical Imaging"],
+      date: "Jan 2023 - Jul 2023",
+      internalLink: "/projects/diffusion",
+      highlight: "Published Research"
     },
     {
       title: "TypeRacer Data Analysis",
       description: "Automated web scraping and analysis system for extracting historical TypeRacer data with 10+ visualization plots tracking typing speed progress over time.",
-      tech: ["Selenium", "Python", "Data Analysis"],
+      tech: ["Python", "Selenium", "Data Analysis"],
       date: "Oct 2022 - Nov 2022",
-      link: "https://github.com/zuhaibdamudi"
+      internalLink: "/projects/typeracer", 
+      highlight: "Published Project"
     },
     {
-      title: "Habitual - Habit Tracker",
+      title: "Habitual: Android Habit Tracker Application",
       description: "Interactive Flutter application with 100+ downloads on Google Play Store, featuring comprehensive statistics and persistent local storage.",
-      tech: ["Flutter", "SQLite", "Mobile Dev"],
+      tech: ["Flutter", "Dart", "SQLite", "Android Development"],
       date: "Jan 2022 - Mar 2022",
-      link: "https://github.com/zuhaibdamudi"
-    }
+      highlight: "Published Application",
+      internalLink: "/projects/habitual"
+    }, 
+    {
+      title: "LSB Image Steganography",
+      description: "GUI-based steganography tool that encodes secret messages into PNG images using LSB (Least Significant Bit) manipulation, with real-time transmission and decoding over a TCP socket connection.",
+      tech: ["Python", "Socket Programming", "NumPy", "OpenCV", "PIL", "Tkinter"],
+      date: "Nov 2022 - Dec 2022",
+      link: "https://github.com/zuhaibdamudi/image-steganography", 
+      highlight: "Computer Networks"
+    },
   ];
 
   const scrollToSection = (sectionId) => {
@@ -119,6 +159,7 @@ export default function Portfolio() {
           right: 0;
           z-index: 1000;
           padding: 2rem 4rem;
+          padding-top: calc(2rem + env(safe-area-inset-top, 0px));
           display: flex;
           justify-content: space-between;
           align-items: center;
@@ -128,7 +169,8 @@ export default function Portfolio() {
 
         nav.scrolled {
           padding: 1.5rem 4rem;
-          background: rgba(250, 248, 243, 0.95);
+          padding-top: calc(1.5rem + env(safe-area-inset-top, 0px));
+          background: rgba(250, 248, 243, 0.98);
           backdrop-filter: blur(20px);
           border-bottom: 1px solid var(--border);
           box-shadow: 0 4px 24px rgba(0, 0, 0, 0.03);
@@ -669,9 +711,9 @@ export default function Portfolio() {
         }
 
         .project-info h3 {
-          font-size: 2rem;
+          font-size: 1.5rem;
           font-weight: 400;
-          margin-bottom: 1.5rem;
+          margin-bottom: 1rem;
           letter-spacing: -0.01em;
         }
 
@@ -710,16 +752,16 @@ export default function Portfolio() {
         }
 
         .contact-content h2 {
-          font-size: 3.5rem;
+          font-size: 2.25rem;
           font-weight: 300;
-          margin-bottom: 2rem;
+          margin-bottom: 1.5rem;
           letter-spacing: -0.02em;
         }
 
         .contact-content p {
-          font-size: 1.3rem;
+          font-size: 1.1rem;
           color: var(--text-secondary);
-          margin-bottom: 3rem;
+          margin-bottom: 2rem;
           max-width: 700px;
           margin-left: auto;
           margin-right: auto;
@@ -727,16 +769,16 @@ export default function Portfolio() {
 
         .contact-email {
           display: inline-block;
-          font-size: 1.8rem;
+          font-size: 1rem;
           color: var(--accent);
           text-decoration: none;
-          padding: 1.5rem 3rem;
+          padding: 0.875rem 1.75rem;
           border: 2px solid var(--accent);
           transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
           border-radius: 50px;
           background: white;
           position: relative;
-          margin: 0 1rem;
+          margin: 0 0.5rem;
         }
 
         .contact-email:hover {
@@ -747,7 +789,7 @@ export default function Portfolio() {
         .contact-emails {
           display: flex;
           flex-wrap: wrap;
-          gap: 1.5rem;
+          gap: 1rem;
           justify-content: center;
           align-items: center;
         }
@@ -857,6 +899,7 @@ export default function Portfolio() {
 
           .hero {
             padding: 0 2rem;
+            padding-bottom: 4rem;
           }
 
           .hero-content {
@@ -909,12 +952,14 @@ export default function Portfolio() {
             gap: 0.75rem;
             justify-content: center;
             padding: 1rem 1.5rem;
+            padding-top: calc(1rem + env(safe-area-inset-top, 0px));
             background: rgba(250, 248, 243, 0.98);
             backdrop-filter: blur(20px);
           }
 
           nav.scrolled {
             padding: 0.75rem 1.5rem;
+            padding-top: calc(0.75rem + env(safe-area-inset-top, 0px));
           }
 
           .logo {
@@ -948,7 +993,8 @@ export default function Portfolio() {
 
           .hero {
             padding: 0 1.5rem;
-            padding-top: 120px;
+            padding-top: calc(120px + env(safe-area-inset-top, 0px));
+            padding-bottom: 4rem;
             min-height: auto;
           }
 
@@ -1061,12 +1107,12 @@ export default function Portfolio() {
           }
 
           .contact-content h2 {
-            font-size: 2rem;
+            font-size: 1.75rem;
           }
 
           .contact-email {
-            font-size: 1rem;
-            padding: 0.875rem 1.5rem;
+            font-size: 0.9rem;
+            padding: 0.75rem 1.25rem;
           }
 
           .contact-emails {
@@ -1086,6 +1132,10 @@ export default function Portfolio() {
 
           .project-card {
             padding: 1.5rem;
+          }
+
+          .project-info h3 {
+            font-size: 1.25rem;
           }
 
           .footer-social-links {
@@ -1282,7 +1332,17 @@ export default function Portfolio() {
             {projects.map((project, index) => (
               <div 
                 key={index} 
-                className="project-card"
+                className={`project-card ${project.link || project.internalLink ? 'clickable' : ''}`}
+                onClick={() => {
+                  if (project.internalLink) {
+                    // Save scroll position before navigating
+                    sessionStorage.setItem('portfolioScrollPosition', window.scrollY.toString());
+                    navigate(project.internalLink);
+                  } else if (project.link) {
+                    window.open(project.link, '_blank');
+                  }
+                }}
+                style={{ cursor: project.link || project.internalLink ? 'pointer' : 'default' }}
               >
                 <div className="project-meta">
                   <div className="project-date">{project.date}</div>
@@ -1298,10 +1358,10 @@ export default function Portfolio() {
                 <div className="project-info">
                   <h3>{project.title}</h3>
                   <p>{project.description}</p>
-                  {project.link && (
-                    <a href={project.link} target="_blank" rel="noopener noreferrer" className="project-link">
+                  {(project.link || project.internalLink) && (
+                    <span className="project-link">
                       View Project
-                    </a>
+                    </span>
                   )}
                 </div>
               </div>
@@ -1451,8 +1511,7 @@ export default function Portfolio() {
         <div className="contact-content">
           <h2>Let's Work Together</h2>
           <p>
-            I'm currently open to opportunities in software engineering, AI research, 
-            and performance engineering. Feel free to reach out!
+            I'm currently open to opportunities in software engineering, data, and AI. Feel free to reach out!
           </p>
           <div className="contact-emails">
             <a href="mailto:damudi.m@northeastern.edu" className="contact-email">
