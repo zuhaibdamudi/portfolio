@@ -68,6 +68,17 @@ export default function LiftLogProject() {
           background: var(--bg-primary);
         }
 
+        .safe-area-cover {
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
+          height: env(safe-area-inset-top, 0px);
+          background: white;
+          z-index: 9999;
+          pointer-events: none;
+        }
+
         .project-header {
           padding: 1rem 4rem;
           padding-top: calc(1rem + env(safe-area-inset-top, 0px));
@@ -435,6 +446,9 @@ export default function LiftLogProject() {
           }
         }
       `}</style>
+
+      {/* Safe Area Cover for iOS */}
+      <div className="safe-area-cover"></div>
 
       {/* Header */}
       <header className="project-header">

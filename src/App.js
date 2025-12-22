@@ -159,7 +159,8 @@ export default function Portfolio() {
           right: 0;
           height: env(safe-area-inset-top, 0px);
           background: var(--bg-primary);
-          z-index: 1001;
+          z-index: 9999;
+          pointer-events: none;
         }
 
         /* Navigation */
@@ -174,18 +175,8 @@ export default function Portfolio() {
           display: flex;
           justify-content: space-between;
           align-items: center;
-          background: linear-gradient(to bottom, var(--bg-primary) 0%, transparent 100%);
-          transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        nav::before {
-          content: '';
-          position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-          height: calc(env(safe-area-inset-top, 0px) + 10px);
           background: var(--bg-primary);
+          transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         nav.scrolled {
@@ -195,10 +186,6 @@ export default function Portfolio() {
           backdrop-filter: blur(20px);
           border-bottom: 1px solid var(--border);
           box-shadow: 0 4px 24px rgba(0, 0, 0, 0.03);
-        }
-
-        nav.scrolled::before {
-          background: rgba(250, 248, 243, 0.98);
         }
 
         .logo {
@@ -864,10 +851,12 @@ export default function Portfolio() {
         @media (max-width: 1024px) {
           nav {
             padding: 1.5rem 2rem;
+            padding-top: calc(1.5rem + env(safe-area-inset-top, 0px));
           }
 
           nav.scrolled {
             padding: 1rem 2rem;
+            padding-top: calc(1rem + env(safe-area-inset-top, 0px));
           }
 
           .nav-center {
@@ -985,19 +974,10 @@ export default function Portfolio() {
             background: var(--bg-primary);
           }
 
-          nav::before {
-            height: calc(env(safe-area-inset-top, 0px) + 20px);
-            background: var(--bg-primary);
-          }
-
           nav.scrolled {
             padding: 0.75rem 1.5rem;
             padding-top: calc(0.75rem + env(safe-area-inset-top, 0px));
-            background: var(--bg-primary);
-          }
-
-          nav.scrolled::before {
-            background: var(--bg-primary);
+            background: rgba(250, 248, 243, 0.98);
           }
 
           .logo {
@@ -1492,7 +1472,7 @@ export default function Portfolio() {
                   {/* Northeastern: Sep 2025 - Aug 2027 */}
                   <div className="timeline-entry current" style={{ top: '75.5%', height: '22%' }}>
                     <div className="timeline-entry-icon">
-                      <img src={process.env.PUBLIC_URL + "/northeastern_university_logo.jpeg"} alt="Northeastern" />
+                      <img src={process.env.PUBLIC_URL + "/northeastern-logo.png"} alt="Northeastern" />
                     </div>
                     <div className="timeline-entry-title">Masters in Computer Science</div>
                     <div className="timeline-entry-duration">Sep '25 - Aug '27</div>
@@ -1517,6 +1497,12 @@ export default function Portfolio() {
                     <div className="timeline-entry-title">Software QA Engineer @ Shell</div>
                     <div className="timeline-entry-duration">Aug '23 - Aug '25</div>
                   </div>
+                  {/* Seeking co-ops: 2026 */}
+                  <div className="timeline-entry future" style={{ top: '85%', height: '10%', minHeight: '105px' }}>
+                    <div className="timeline-entry-icon">🔍</div>
+                    <div className="timeline-entry-title">Seeking co-ops</div>
+                    <div className="timeline-entry-duration">April '26 onwards</div>
+                  </div>
                 </div>
 
                 {/* Track 3: Projects */}
@@ -1536,12 +1522,6 @@ export default function Portfolio() {
                     </div>
                     <div className="timeline-entry-title">Brain Tumor Detection using Diffusion Models</div>
                     <div className="timeline-entry-duration">Jan - Jul '23</div>
-                  </div>
-                  {/* Seeking Internship: All of 2026 */}
-                  <div className="timeline-entry future" style={{ top: '85%', height: '10%', minHeight: '105px' }}>
-                    <div className="timeline-entry-icon">🔍</div>
-                    <div className="timeline-entry-title">Seeking co-ops</div>
-                    <div className="timeline-entry-duration">April '26 onwards</div>
                   </div>
                 </div>
               </div>
