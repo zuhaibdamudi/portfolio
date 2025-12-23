@@ -80,14 +80,16 @@ export default function DiffusionProject() {
           top: 0;
           left: 0;
           right: 0;
+          height: constant(safe-area-inset-top);
           height: env(safe-area-inset-top, 0px);
           background: white;
-          z-index: 9999;
+          z-index: 10001;
           pointer-events: none;
         }
 
         .project-header {
           padding: 1rem 4rem;
+          padding-top: constant(safe-area-inset-top);
           padding-top: calc(1rem + env(safe-area-inset-top, 0px));
           background: white;
           border-bottom: 2px solid var(--border);
@@ -96,7 +98,7 @@ export default function DiffusionProject() {
           justify-content: space-between;
           position: sticky;
           top: 0;
-          z-index: 100;
+          z-index: 1000;
         }
 
         .back-button {

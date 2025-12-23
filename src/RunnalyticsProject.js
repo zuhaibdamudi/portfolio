@@ -68,14 +68,16 @@ export default function RunnalyticsProject() {
           top: 0;
           left: 0;
           right: 0;
+          height: constant(safe-area-inset-top);
           height: env(safe-area-inset-top, 0px);
           background: white;
-          z-index: 9999;
+          z-index: 10001;
           pointer-events: none;
         }
 
         .project-header {
           padding: 1rem 4rem;
+          padding-top: constant(safe-area-inset-top);
           padding-top: calc(1rem + env(safe-area-inset-top, 0px));
           background: white;
           border-bottom: 2px solid var(--border);
@@ -84,7 +86,7 @@ export default function RunnalyticsProject() {
           justify-content: space-between;
           position: sticky;
           top: 0;
-          z-index: 100;
+          z-index: 1000;
         }
 
         .back-button {
@@ -124,6 +126,17 @@ export default function RunnalyticsProject() {
           padding: 3rem 4rem 2.5rem;
           text-align: center;
           background: white;
+        }
+
+        .app-logo {
+          width: 150px;
+          height: 150px;
+          border-radius: 28px;
+          margin-bottom: 1.5rem;
+          box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+          display: block;
+          margin-left: auto;
+          margin-right: auto;
         }
 
         .project-badge {
@@ -374,6 +387,13 @@ export default function RunnalyticsProject() {
             padding: 2rem 1.5rem;
           }
 
+          .app-logo {
+            width: 120px;
+            height: 120px;
+            border-radius: 24px;
+            margin-bottom: 1.25rem;
+          }
+
           .project-hero h1 {
             font-size: 1.5rem;
           }
@@ -457,6 +477,11 @@ export default function RunnalyticsProject() {
 
       {/* Project Hero */}
       <section className="project-hero">
+        <img 
+          src={process.env.PUBLIC_URL + '/runnalytics-logo.png'} 
+          alt="Runnalytics Logo" 
+          className="app-logo"
+        />
         <div className="project-badge">Data Analysis & Visualization</div>
         <h1>Runnalytics: Strava Running Analytics Dashboard</h1>
         <p className="project-subtitle">

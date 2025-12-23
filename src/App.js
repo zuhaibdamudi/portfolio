@@ -125,12 +125,17 @@ export default function Portfolio() {
           --border: rgba(13, 148, 136, 0.15);
         }
 
+        html {
+          background: var(--bg-primary);
+        }
+
         body {
           background: var(--bg-primary);
           color: var(--text-primary);
           font-family: 'Poppins', sans-serif;
           line-height: 1.7;
           overflow-x: hidden;
+          margin-top: 0;
         }
 
         .portfolio {
@@ -147,7 +152,7 @@ export default function Portfolio() {
           background: radial-gradient(circle, rgba(13, 148, 136, 0.05) 0%, transparent 70%);
           pointer-events: none;
           transform: translate(-50%, -50%);
-          z-index: 9999;
+          z-index: 1;
           transition: opacity 0.3s;
         }
 
@@ -157,9 +162,10 @@ export default function Portfolio() {
           top: 0;
           left: 0;
           right: 0;
+          height: constant(safe-area-inset-top);
           height: env(safe-area-inset-top, 0px);
           background: var(--bg-primary);
-          z-index: 9999;
+          z-index: 10001;
           pointer-events: none;
         }
 
@@ -171,6 +177,7 @@ export default function Portfolio() {
           right: 0;
           z-index: 1000;
           padding: 2rem 4rem;
+          padding-top: constant(safe-area-inset-top);
           padding-top: calc(2rem + env(safe-area-inset-top, 0px));
           display: flex;
           justify-content: space-between;
@@ -179,11 +186,22 @@ export default function Portfolio() {
           transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
+        nav::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: inherit;
+          z-index: -1;
+        }
+
         nav.scrolled {
           padding: 1.5rem 4rem;
+          padding-top: constant(safe-area-inset-top);
           padding-top: calc(1.5rem + env(safe-area-inset-top, 0px));
-          background: rgba(250, 248, 243, 0.98);
-          backdrop-filter: blur(20px);
+          background: var(--bg-primary);
           border-bottom: 1px solid var(--border);
           box-shadow: 0 4px 24px rgba(0, 0, 0, 0.03);
         }
@@ -564,6 +582,15 @@ export default function Portfolio() {
           gap: 0.15rem;
         }
 
+        .timeline-entry.clickable {
+          cursor: pointer;
+          transition: border-color 0.3s ease;
+        }
+
+        .timeline-entry.clickable:hover {
+          border-color: var(--accent);
+        }
+
         .timeline-entry.future {
           background: transparent;
           border: 2.5px dashed var(--accent);
@@ -851,11 +878,13 @@ export default function Portfolio() {
         @media (max-width: 1024px) {
           nav {
             padding: 1.5rem 2rem;
+            padding-top: constant(safe-area-inset-top);
             padding-top: calc(1.5rem + env(safe-area-inset-top, 0px));
           }
 
           nav.scrolled {
             padding: 1rem 2rem;
+            padding-top: constant(safe-area-inset-top);
             padding-top: calc(1rem + env(safe-area-inset-top, 0px));
           }
 
@@ -970,14 +999,16 @@ export default function Portfolio() {
             gap: 0.75rem;
             justify-content: center;
             padding: 1rem 1.5rem;
+            padding-top: constant(safe-area-inset-top);
             padding-top: calc(1rem + env(safe-area-inset-top, 0px));
             background: var(--bg-primary);
           }
 
           nav.scrolled {
             padding: 0.75rem 1.5rem;
+            padding-top: constant(safe-area-inset-top);
             padding-top: calc(0.75rem + env(safe-area-inset-top, 0px));
-            background: rgba(250, 248, 243, 0.98);
+            background: var(--bg-primary);
           }
 
           .logo {
@@ -1508,7 +1539,14 @@ export default function Portfolio() {
                 {/* Track 3: Projects */}
                 <div className="timeline-track">
                   {/* Habitual: Jan 2022 - Mar 2022 */}
-                  <div className="timeline-entry" style={{ top: '13%', height: '6%', minHeight: '105px' }}>
+                  <div 
+                    className="timeline-entry clickable" 
+                    style={{ top: '13%', height: '6%', minHeight: '105px' }}
+                    onClick={() => {
+                      sessionStorage.setItem('portfolioScrollPosition', window.scrollY.toString());
+                      navigate('/projects/habitual');
+                    }}
+                  >
                     <div className="timeline-entry-icon">
                       <img src={process.env.PUBLIC_URL + "/habitual-logo.png"} alt="Habitual" />
                     </div>
@@ -1516,12 +1554,34 @@ export default function Portfolio() {
                     <div className="timeline-entry-duration">Jan - Mar '22</div>
                   </div>
                   {/* Research: Jan 2023 - Jul 2023 */}
-                  <div className="timeline-entry" style={{ top: '37%', height: '11.9%', minHeight: '120px' }}>
+                  <div 
+                    className="timeline-entry clickable" 
+                    style={{ top: '37%', height: '11.9%', minHeight: '120px' }}
+                    onClick={() => {
+                      sessionStorage.setItem('portfolioScrollPosition', window.scrollY.toString());
+                      navigate('/projects/diffusion');
+                    }}
+                  >
                     <div className="timeline-entry-icon">
                       <img src={process.env.PUBLIC_URL + "/brain-logo.png"} alt="Brain Research" />
                     </div>
                     <div className="timeline-entry-title">Brain Tumor Detection using Diffusion Models</div>
                     <div className="timeline-entry-duration">Jan - Jul '23</div>
+                  </div>
+                  {/* Runnalytics: Dec 2025 - Jan 2026 */}
+                  <div 
+                    className="timeline-entry clickable" 
+                    style={{ top: '74%', height: '5%', minHeight: '125px' }}
+                    onClick={() => {
+                      sessionStorage.setItem('portfolioScrollPosition', window.scrollY.toString());
+                      navigate('/projects/runnalytics');
+                    }}
+                  >
+                    <div className="timeline-entry-icon">
+                      <img src={process.env.PUBLIC_URL + "/runnalytics-logo.png"} alt="Runnalytics" />
+                    </div>
+                    <div className="timeline-entry-title">Runnalytics: Strava Analytics Dashboard</div>
+                    <div className="timeline-entry-duration">Dec '25 - Jan '26</div>
                   </div>
                 </div>
               </div>
