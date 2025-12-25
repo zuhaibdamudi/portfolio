@@ -633,13 +633,13 @@ export default function Portfolio() {
 
         /* About Section */
         .about-section {
-          padding: 8rem 4rem;
+          padding: 6rem 4rem;
           background: white;
           border-top: 2px solid var(--border);
         }
 
-        .section-content {
-          max-width: 1200px;
+        .about-container {
+          max-width: 1600px;
           margin: 0 auto;
         }
 
@@ -655,27 +655,227 @@ export default function Portfolio() {
           color: var(--accent);
         }
 
+        .about-content-wrapper {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 4rem;
+          align-items: start;
+        }
+
         .about-grid {
         }
 
         .about-text {
-          font-size: 1.2rem;
+          font-size: 1.05rem;
           color: var(--text-secondary);
-          line-height: 1.9;
+          line-height: 1.85;
         }
 
         .about-text p {
-          margin-bottom: 1.5rem;
+          margin-bottom: 1.25rem;
         }
 
         .about-text strong {
           font-weight: 500;
         }
 
+        /* Timeline inside About Section */
+        .about-timeline-container {
+          overflow-x: auto;
+          -webkit-overflow-scrolling: touch;
+        }
+
+        .about-timeline-wrapper {
+          min-width: 550px;
+        }
+
+        .about-timeline-headers {
+          display: grid;
+          grid-template-columns: 80px repeat(3, 1fr);
+          gap: 1.5rem;
+          margin-bottom: 0.75rem;
+        }
+
+        .about-timeline-header {
+          text-align: center;
+          font-size: 0.85rem;
+          font-weight: 600;
+          color: var(--accent);
+          letter-spacing: 0.05em;
+        }
+
+        .about-timeline-header.empty {
+          visibility: hidden;
+        }
+
+        .about-timeline {
+          position: relative;
+          display: grid;
+          grid-template-columns: 80px 1fr;
+          gap: 1.5rem;
+          min-height: 650px;
+        }
+
+        .about-timeline-years {
+          position: relative;
+          border-right: 2px solid var(--border);
+          padding-right: 0.75rem;
+          display: flex;
+          flex-direction: column;
+        }
+
+        .about-timeline-year {
+          font-family: 'JetBrains Mono', monospace;
+          font-size: 0.8rem;
+          color: var(--text-secondary);
+          font-weight: 500;
+          text-align: right;
+          position: relative;
+          display: flex;
+          align-items: center;
+          justify-content: flex-end;
+          border-top: 1px solid rgba(0, 0, 0, 0.15);
+        }
+
+        .about-timeline-year:first-child {
+          border-top: none;
+        }
+
+        .about-timeline-year.year-2019 { flex: 0.5; }
+        .about-timeline-year.year-2020 { flex: 0.5; }
+        .about-timeline-year.year-2021 { flex: 0.5; }
+        .about-timeline-year.year-2022 { flex: 3; }
+        .about-timeline-year.year-2023 { flex: 2.2; }
+        .about-timeline-year.year-2024 { flex: 1.0; }
+        .about-timeline-year.year-2025 { flex: 1.7; }
+        .about-timeline-year.year-2026 { flex: 1; }
+        .about-timeline-year.year-2027 { flex: 0.5; }
+        .about-timeline-year.year-end { 
+          flex: 0.05; 
+          border-top: 2px solid rgba(0, 0, 0, 0.15);
+          height: 0;
+          padding: 0;
+        }
+
+        .about-timeline-tracks-wrapper {
+          position: relative;
+        }
+
+        .about-timeline-tracks {
+          position: relative;
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 0.5rem;
+        }
+
+        .about-timeline-track {
+          position: relative;
+          height: 100%;
+          min-height: 650px;
+        }
+
+        .about-timeline-entry {
+          position: absolute;
+          width: 100%;
+          background: #e6f9f5;
+          border: 2px solid transparent;
+          border-radius: 10px;
+          padding: 0.75rem 0.5rem 0.65rem 0.5rem;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+          gap: 0.1rem;
+        }
+
+        .about-timeline-entry.clickable {
+          cursor: pointer;
+          transition: border-color 0.3s ease;
+        }
+
+        .about-timeline-entry.clickable:hover {
+          border-color: var(--accent);
+        }
+
+        .about-timeline-entry.future {
+          background: transparent;
+          border: 2.5px dashed var(--accent);
+        }
+
+        .about-timeline-entry.current {
+          background: #b2f5ea;
+        }
+
+        .about-timeline-entry-icon {
+          font-size: 1.5rem;
+          margin-bottom: 0.1rem;
+        }
+
+        .about-timeline-entry-icon img {
+          width: 32px;
+          height: 32px;
+          padding: 4px;
+          background: white;
+          border-radius: 6px;
+          object-fit: contain;
+          border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .about-timeline-entry-title {
+          font-size: 0.7rem;
+          font-weight: 600;
+          color: var(--text-primary);
+          line-height: 1.3;
+        }
+
+        .about-timeline-entry-duration {
+          font-size: 0.65rem;
+          color: var(--text-secondary);
+          font-family: 'JetBrains Mono', monospace;
+        }
+
+        .about-present-indicator {
+          position: absolute;
+          left: 0;
+          right: 0;
+          height: 2px;
+          background: rgba(13, 148, 136, 0.35);
+          z-index: 5;
+        }
+
+        .about-present-indicator::before {
+          content: '';
+          position: absolute;
+          left: 0;
+          top: 50%;
+          transform: translate(-50%, -50%);
+          width: 10px;
+          height: 10px;
+          background: var(--accent);
+          border-radius: 50%;
+        }
+
+        .about-present-label {
+          position: absolute;
+          left: -90px;
+          top: 50%;
+          transform: translateY(-50%);
+          font-size: 0.7rem;
+          font-weight: 600;
+          color: var(--accent);
+          white-space: nowrap;
+        }
+
         /* Projects Section */
         .projects-section {
           padding: 8rem 4rem;
           background: var(--bg-secondary);
+        }
+
+        .section-content {
+          max-width: 1200px;
+          margin: 0 auto;
         }
 
         .projects-grid {
@@ -785,7 +985,7 @@ export default function Portfolio() {
         /* Contact Section */
         .contact-section {
           padding: 8rem 4rem;
-          background: var(--bg-secondary);
+          background: white;
           border-top: 2px solid var(--border);
           text-align: center;
         }
@@ -902,6 +1102,81 @@ export default function Portfolio() {
             height: 20px;
           }
 
+          /* Tablet About Section */
+          .about-section {
+            padding: 5rem 2rem;
+          }
+
+          .about-content-wrapper {
+            grid-template-columns: 1fr;
+            gap: 3rem;
+          }
+
+          .about-text {
+            font-size: 1rem;
+          }
+
+          .about-timeline-container {
+            overflow: visible;
+          }
+
+          .about-timeline-wrapper {
+            min-width: unset;
+            width: 100%;
+          }
+
+          .about-timeline {
+            min-height: 550px;
+            grid-template-columns: 60px 1fr;
+            gap: 1rem;
+          }
+
+          .about-timeline-track {
+            min-height: 550px;
+          }
+
+          .about-timeline-headers {
+            grid-template-columns: 60px repeat(3, 1fr);
+            gap: 1rem;
+          }
+
+          .about-timeline-header {
+            font-size: 0.7rem;
+          }
+
+          .about-timeline-year {
+            font-size: 0.65rem;
+          }
+
+          .about-timeline-tracks {
+            gap: 0.4rem;
+          }
+
+          .about-timeline-entry {
+            padding: 0.4rem 0.3rem;
+            border-radius: 8px;
+          }
+
+          .about-timeline-entry-icon img {
+            width: 24px;
+            height: 24px;
+            padding: 3px;
+            border-radius: 5px;
+          }
+
+          .about-timeline-entry-title {
+            font-size: 0.55rem;
+          }
+
+          .about-timeline-entry-duration {
+            font-size: 0.5rem;
+          }
+
+          .about-present-label {
+            left: -65px;
+            font-size: 0.55rem;
+          }
+
           .timeline {
             grid-template-columns: 80px 1fr;
             gap: 1.5rem;
@@ -1009,6 +1284,11 @@ export default function Portfolio() {
             padding-top: constant(safe-area-inset-top);
             padding-top: calc(0.75rem + env(safe-area-inset-top, 0px));
             background: var(--bg-primary);
+            gap: 0;
+          }
+
+          nav.scrolled .logo {
+            display: none;
           }
 
           .logo {
@@ -1155,6 +1435,143 @@ export default function Portfolio() {
             font-size: 2rem;
           }
 
+          /* Mobile Project Cards */
+          .project-card {
+            padding: 1.5rem;
+            gap: 1.5rem;
+          }
+
+          .project-date {
+            font-size: 0.75rem;
+          }
+
+          .project-highlight {
+            padding: 0.3rem 0.6rem;
+            font-size: 0.6rem;
+            border-radius: 12px;
+          }
+
+          .project-tech {
+            gap: 0.4rem;
+          }
+
+          .tech-tag {
+            padding: 0.25rem 0.6rem;
+            font-size: 0.65rem;
+            border-radius: 10px;
+          }
+
+          .project-info h3 {
+            font-size: 1.15rem;
+            margin-bottom: 0.75rem;
+          }
+
+          .project-info p {
+            font-size: 0.9rem;
+          }
+
+          .project-meta {
+            gap: 0.75rem;
+          }
+
+          /* Mobile About Section with Timeline */
+          .about-section {
+            padding: 4rem 1rem;
+          }
+
+          .about-content-wrapper {
+            grid-template-columns: 1fr;
+            gap: 3rem;
+          }
+
+          .about-text {
+            font-size: 0.95rem;
+            line-height: 1.75;
+          }
+
+          .about-text p {
+            margin-bottom: 1rem;
+          }
+
+          .about-timeline-container {
+            margin-top: 1rem;
+            overflow: visible;
+          }
+
+          .about-timeline-wrapper {
+            min-width: unset;
+            width: 100%;
+          }
+
+          .about-timeline {
+            min-height: 500px;
+            grid-template-columns: 38px 1fr;
+            gap: 0.5rem;
+          }
+
+          .about-timeline-track {
+            min-height: 500px;
+          }
+
+          .about-timeline-headers {
+            grid-template-columns: 38px repeat(3, 1fr);
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+          }
+
+          .about-timeline-header {
+            font-size: 0.6rem;
+            letter-spacing: 0.02em;
+          }
+
+          .about-timeline-years {
+            padding-right: 0.35rem;
+          }
+
+          .about-timeline-year {
+            font-size: 0.55rem;
+          }
+
+          .about-timeline-tracks {
+            gap: 0.25rem;
+          }
+
+          .about-timeline-entry {
+            padding: 0.3rem 0.2rem;
+            border-radius: 6px;
+          }
+
+          .about-timeline-entry-icon {
+            font-size: 0.9rem;
+            margin-bottom: 0;
+          }
+
+          .about-timeline-entry-icon img {
+            width: 20px;
+            height: 20px;
+            padding: 2px;
+            border-radius: 4px;
+          }
+
+          .about-timeline-entry-title {
+            font-size: 0.52rem;
+            line-height: 1.2;
+          }
+
+          .about-timeline-entry-duration {
+            font-size: 0.45rem;
+          }
+
+          .about-present-indicator::before {
+            width: 6px;
+            height: 6px;
+          }
+
+          .about-present-label {
+            left: -42px;
+            font-size: 0.5rem;
+          }
+
           .timeline-title {
             font-size: 2rem;
           }
@@ -1236,6 +1653,79 @@ export default function Portfolio() {
           .section-title,
           .timeline-title {
             font-size: 1.75rem;
+          }
+
+          /* Extra small screen about timeline */
+          .about-section {
+            padding: 3rem 0.75rem;
+          }
+
+          .about-timeline {
+            min-height: 450px;
+            grid-template-columns: 32px 1fr;
+            gap: 0.35rem;
+          }
+
+          .about-timeline-track {
+            min-height: 450px;
+          }
+
+          .about-timeline-headers {
+            grid-template-columns: 32px repeat(3, 1fr);
+            gap: 0.35rem;
+          }
+
+          .about-timeline-header {
+            font-size: 0.5rem;
+            letter-spacing: 0;
+          }
+
+          .about-timeline-years {
+            padding-right: 0.25rem;
+          }
+
+          .about-timeline-year {
+            font-size: 0.48rem;
+          }
+
+          .about-timeline-tracks {
+            gap: 0.2rem;
+          }
+
+          .about-timeline-entry {
+            padding: 0.2rem 0.15rem;
+            border-radius: 5px;
+            gap: 0;
+          }
+
+          .about-timeline-entry-icon {
+            font-size: 0.85rem;
+          }
+
+          .about-timeline-entry-icon img {
+            width: 16px;
+            height: 16px;
+            padding: 1px;
+            border-radius: 3px;
+          }
+
+          .about-timeline-entry-title {
+            font-size: 0.45rem;
+            line-height: 1.15;
+          }
+
+          .about-timeline-entry-duration {
+            font-size: 0.4rem;
+          }
+
+          .about-present-indicator::before {
+            width: 5px;
+            height: 5px;
+          }
+
+          .about-present-label {
+            left: -35px;
+            font-size: 0.45rem;
           }
 
           .timeline-scroll-wrapper {
@@ -1355,11 +1845,11 @@ export default function Portfolio() {
 
       {/* About Section */}
       <section className="about-section" id="about">
-        <div className="section-content">
+        <div className="about-container">
           <h2 className="section-title">
             About <span>Me</span>
           </h2>
-          <div className="about-grid">
+          <div className="about-content-wrapper">
             <div className="about-text">
               <p>
                 I'm a graduate student at <strong>Northeastern University</strong>, pursuing a <strong>Master's in Computer Science</strong>. My background includes experience in software engineering, AI research, data science and data engineering across various personal, academic and industry projects.
@@ -1373,6 +1863,145 @@ export default function Portfolio() {
               <p>
                 I'm passionate about working with data to create meaningful impact. I aspire to build systems that help people understand and leverage their data effectively, whether through data pipelines, machine learning models, or thoughtfully designed analytics platforms. I'm especially interested in solving real-world problems by transforming raw inputs into meaningful, actionable outcomes.
               </p>
+            </div>
+            
+            <div className="about-timeline-container">
+              <div className="about-timeline-wrapper">
+                <div className="about-timeline-headers">
+                  <div className="about-timeline-header empty"></div>
+                  <div className="about-timeline-header">Education</div>
+                  <div className="about-timeline-header">Experience</div>
+                  <div className="about-timeline-header">Projects</div>
+                </div>
+                
+                <div className="about-timeline">
+                  <div className="about-timeline-years">
+                    <div className="about-timeline-year year-2019">2019</div>
+                    <div className="about-timeline-year year-2020">2020</div>
+                    <div className="about-timeline-year year-2021">2021</div>
+                    <div className="about-timeline-year year-2022">2022</div>
+                    <div className="about-timeline-year year-2023">2023</div>
+                    <div className="about-timeline-year year-2024">2024</div>
+                    <div className="about-timeline-year year-2025">2025</div>
+                    <div className="about-timeline-year year-2026">2026</div>
+                    <div className="about-timeline-year year-2027">2027</div>
+                    <div className="about-timeline-year year-end"></div>
+                  </div>
+                  
+                  <div className="about-timeline-tracks-wrapper">
+                    <div className="about-present-indicator" style={{ top: `${(() => {
+                      const now = new Date();
+                      const currentYear = now.getFullYear();
+                      const currentMonth = now.getMonth();
+                      const yearFlexes = {
+                        2019: 0.5, 2020: 0.5, 2021: 0.5, 2022: 3,
+                        2023: 2.2, 2024: 1.0, 2025: 1.7, 2026: 1, 2027: 0.5
+                      };
+                      const totalFlex = 11.45;
+                      let flexSum = 0;
+                      for (let year = 2019; year < currentYear; year++) {
+                        flexSum += yearFlexes[year];
+                      }
+                      const monthsIntoYear = currentMonth + 1;
+                      const currentYearProgress = monthsIntoYear / 12;
+                      flexSum += yearFlexes[currentYear] * currentYearProgress;
+                      const percentage = (flexSum / totalFlex) * 100;
+                      return percentage;
+                    })()}%` }}>
+                      <span className="about-present-label">Present</span>
+                    </div>
+                    
+                    <div className="about-timeline-tracks">
+                      {/* Track 1: Education */}
+                      <div className="about-timeline-track">
+                        <div className="about-timeline-entry" style={{ top: '0%', height: '48.9%' }}>
+                          <div className="about-timeline-entry-icon">
+                            <img src={process.env.PUBLIC_URL + "/mit-logo.png"} alt="MIT" />
+                          </div>
+                          <div className="about-timeline-entry-title">Bachelors in Computer Science and Engineering</div>
+                          <div className="about-timeline-entry-duration">Jul '19 - Jul '23</div>
+                        </div>
+                        <div className="about-timeline-entry current" style={{ top: '75.5%', height: '22%' }}>
+                          <div className="about-timeline-entry-icon">
+                            <img src={process.env.PUBLIC_URL + "/northeastern-logo.png"} alt="Northeastern" />
+                          </div>
+                          <div className="about-timeline-entry-title">Masters in Computer Science</div>
+                          <div className="about-timeline-entry-duration">Sep '25 - Aug '27</div>
+                        </div>
+                      </div>
+
+                      {/* Track 2: Experience */}
+                      <div className="about-timeline-track">
+                        <div className="about-timeline-entry" style={{ top: '23%', height: '3%', minHeight: '100px' }}>
+                          <div className="about-timeline-entry-icon">
+                            <img src={process.env.PUBLIC_URL + "/questt-logo.png"} alt="Questt" />
+                          </div>
+                          <div className="about-timeline-entry-title">Data Engineer Intern @ Questt</div>
+                          <div className="about-timeline-entry-duration">May - Jul '22</div>
+                        </div>
+                        <div className="about-timeline-entry" style={{ top: '48.9%', height: '26.6%' }}>
+                          <div className="about-timeline-entry-icon">
+                            <img src={process.env.PUBLIC_URL + "/shell-logo.png"} alt="Shell" />
+                          </div>
+                          <div className="about-timeline-entry-title">Software QA Engineer @ Shell</div>
+                          <div className="about-timeline-entry-duration">Aug '23 - Aug '25</div>
+                        </div>
+                        <div className="about-timeline-entry future" style={{ top: '85%', height: '10%', minHeight: '85px' }}>
+                          <div className="about-timeline-entry-icon">🔍</div>
+                          <div className="about-timeline-entry-title">Seeking co-ops</div>
+                          <div className="about-timeline-entry-duration">April '26 onwards</div>
+                        </div>
+                      </div>
+
+                      {/* Track 3: Projects */}
+                      <div className="about-timeline-track">
+                        <div 
+                          className="about-timeline-entry clickable" 
+                          style={{ top: '13%', height: '6%', minHeight: '85px' }}
+                          onClick={() => {
+                            sessionStorage.setItem('portfolioScrollPosition', window.scrollY.toString());
+                            navigate('/projects/habitual');
+                          }}
+                        >
+                          <div className="about-timeline-entry-icon">
+                            <img src={process.env.PUBLIC_URL + "/habitual-logo.png"} alt="Habitual" />
+                          </div>
+                          <div className="about-timeline-entry-title">Habitual Mobile Application</div>
+                          <div className="about-timeline-entry-duration">Jan - Mar '22</div>
+                        </div>
+                        <div 
+                          className="about-timeline-entry clickable" 
+                          style={{ top: '37%', height: '11.9%', minHeight: '100px' }}
+                          onClick={() => {
+                            sessionStorage.setItem('portfolioScrollPosition', window.scrollY.toString());
+                            navigate('/projects/diffusion');
+                          }}
+                        >
+                          <div className="about-timeline-entry-icon">
+                            <img src={process.env.PUBLIC_URL + "/brain-logo.png"} alt="Brain Research" />
+                          </div>
+                          <div className="about-timeline-entry-title">Brain Tumor Detection using Diffusion Models</div>
+                          <div className="about-timeline-entry-duration">Jan - Jul '23</div>
+                        </div>
+                        <div 
+                          className="about-timeline-entry clickable" 
+                          style={{ top: '74%', height: '5%', minHeight: '100px' }}
+                          onClick={() => {
+                            sessionStorage.setItem('portfolioScrollPosition', window.scrollY.toString());
+                            navigate('/projects/runnalytics');
+                          }}
+                        >
+                          <div className="about-timeline-entry-icon">
+                            <img src={process.env.PUBLIC_URL + "/runnalytics-logo.png"} alt="Runnalytics" />
+                          </div>
+                          <div className="about-timeline-entry-title">Runnalytics: Strava Analytics Dashboard</div>
+                          <div className="about-timeline-entry-duration">Dec '25 - Jan '26</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -1422,171 +2051,6 @@ export default function Portfolio() {
                 </div>
               </div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Timeline Section */}
-      <section className="timeline-section">
-        <div className="timeline-container">
-          <h2 className="timeline-title">My <span>Journey</span></h2>
-          
-          <div className="timeline-scroll-wrapper">
-            {/* Column Headers */}
-            <div className="timeline-column-headers">
-              <div className="timeline-column-header empty"></div>
-              <div className="timeline-column-header">Education</div>
-              <div className="timeline-column-header">Experience</div>
-              <div className="timeline-column-header">Projects</div>
-            </div>
-            
-            <div className="timeline">
-            <div className="timeline-years">
-              <div className="timeline-year year-2019">2019</div>
-              <div className="timeline-year year-2020">2020</div>
-              <div className="timeline-year year-2021">2021</div>
-              <div className="timeline-year year-2022">2022</div>
-              <div className="timeline-year year-2023">2023</div>
-              <div className="timeline-year year-2024">2024</div>
-              <div className="timeline-year year-2025">2025</div>
-              <div className="timeline-year year-2026">2026</div>
-              <div className="timeline-year year-2027">2027</div>
-              <div className="timeline-year year-end"></div>
-            </div>
-            
-            <div className="timeline-tracks-wrapper">
-              {/* Present Indicator - dynamically positioned */}
-              <div className="present-indicator" style={{ top: `${(() => {
-                const now = new Date();
-                const currentYear = now.getFullYear();
-                const currentMonth = now.getMonth(); // 0-11 (December = 11)
-                
-                // Year flex values - MUST match CSS exactly
-                const yearFlexes = {
-                  2019: 0.5, 2020: 0.5, 2021: 0.5, 2022: 3,
-                  2023: 2.2, 2024: 1.0, 2025: 1.7, 2026: 1, 2027: 0.5
-                };
-                const totalFlex = 11.45; // Sum of all flex values (including 0.05 for end marker)
-                
-                // Calculate cumulative flex up to current position
-                let flexSum = 0;
-                
-                // Add complete years before current year
-                for (let year = 2019; year < currentYear; year++) {
-                  flexSum += yearFlexes[year];
-                }
-                
-                // Add progress through current year (December = 11, so 12/12 = 100%)
-                const monthsIntoYear = currentMonth + 1; // Convert 0-11 to 1-12
-                const currentYearProgress = monthsIntoYear / 12;
-                flexSum += yearFlexes[currentYear] * currentYearProgress;
-                
-                // Convert to percentage of total timeline
-                const percentage = (flexSum / totalFlex) * 100;
-                
-                return percentage;
-              })()}%` }}>
-                <span className="present-label">Present</span>
-              </div>
-              
-              <div className="timeline-tracks">
-                {/* Track 1: Education */}
-                <div className="timeline-track">
-                  {/* Manipal: Jul 2019 - Jul 2023 */}
-                  <div className="timeline-entry" style={{ top: '0%', height: '48.9%' }}>
-                    <div className="timeline-entry-icon">
-                      <img src={process.env.PUBLIC_URL + "/mit-logo.png"} alt="MIT" />
-                    </div>
-                    <div className="timeline-entry-title">Bachelors in Computer Science and Engineering</div>
-                    <div className="timeline-entry-duration">Jul '19 - Jul '23</div>
-                  </div>
-                  {/* Northeastern: Sep 2025 - Aug 2027 */}
-                  <div className="timeline-entry current" style={{ top: '75.5%', height: '22%' }}>
-                    <div className="timeline-entry-icon">
-                      <img src={process.env.PUBLIC_URL + "/northeastern-logo.png"} alt="Northeastern" />
-                    </div>
-                    <div className="timeline-entry-title">Masters in Computer Science</div>
-                    <div className="timeline-entry-duration">Sep '25 - Aug '27</div>
-                  </div>
-                </div>
-
-                {/* Track 2: Experience */}
-                <div className="timeline-track">
-                  {/* Questt: May 2022 - Jul 2022 */}
-                  <div className="timeline-entry" style={{ top: '23%', height: '3%', minHeight: '125px' }}>
-                    <div className="timeline-entry-icon">
-                      <img src={process.env.PUBLIC_URL + "/questt-logo.png"} alt="Questt" />
-                    </div>
-                    <div className="timeline-entry-title">Data Engineer Intern @ Questt</div>
-                    <div className="timeline-entry-duration">May - Jul '22</div>
-                  </div>
-                  {/* Shell: Aug 2023 - Aug 2025 */}
-                  <div className="timeline-entry" style={{ top: '48.9%', height: '26.6%' }}>
-                    <div className="timeline-entry-icon">
-                      <img src={process.env.PUBLIC_URL + "/shell-logo.png"} alt="Shell" />
-                    </div>
-                    <div className="timeline-entry-title">Software QA Engineer @ Shell</div>
-                    <div className="timeline-entry-duration">Aug '23 - Aug '25</div>
-                  </div>
-                  {/* Seeking co-ops: 2026 */}
-                  <div className="timeline-entry future" style={{ top: '85%', height: '10%', minHeight: '105px' }}>
-                    <div className="timeline-entry-icon">🔍</div>
-                    <div className="timeline-entry-title">Seeking co-ops</div>
-                    <div className="timeline-entry-duration">April '26 onwards</div>
-                  </div>
-                </div>
-
-                {/* Track 3: Projects */}
-                <div className="timeline-track">
-                  {/* Habitual: Jan 2022 - Mar 2022 */}
-                  <div 
-                    className="timeline-entry clickable" 
-                    style={{ top: '13%', height: '6%', minHeight: '105px' }}
-                    onClick={() => {
-                      sessionStorage.setItem('portfolioScrollPosition', window.scrollY.toString());
-                      navigate('/projects/habitual');
-                    }}
-                  >
-                    <div className="timeline-entry-icon">
-                      <img src={process.env.PUBLIC_URL + "/habitual-logo.png"} alt="Habitual" />
-                    </div>
-                    <div className="timeline-entry-title">Habitual Mobile Application</div>
-                    <div className="timeline-entry-duration">Jan - Mar '22</div>
-                  </div>
-                  {/* Research: Jan 2023 - Jul 2023 */}
-                  <div 
-                    className="timeline-entry clickable" 
-                    style={{ top: '37%', height: '11.9%', minHeight: '120px' }}
-                    onClick={() => {
-                      sessionStorage.setItem('portfolioScrollPosition', window.scrollY.toString());
-                      navigate('/projects/diffusion');
-                    }}
-                  >
-                    <div className="timeline-entry-icon">
-                      <img src={process.env.PUBLIC_URL + "/brain-logo.png"} alt="Brain Research" />
-                    </div>
-                    <div className="timeline-entry-title">Brain Tumor Detection using Diffusion Models</div>
-                    <div className="timeline-entry-duration">Jan - Jul '23</div>
-                  </div>
-                  {/* Runnalytics: Dec 2025 - Jan 2026 */}
-                  <div 
-                    className="timeline-entry clickable" 
-                    style={{ top: '74%', height: '5%', minHeight: '125px' }}
-                    onClick={() => {
-                      sessionStorage.setItem('portfolioScrollPosition', window.scrollY.toString());
-                      navigate('/projects/runnalytics');
-                    }}
-                  >
-                    <div className="timeline-entry-icon">
-                      <img src={process.env.PUBLIC_URL + "/runnalytics-logo.png"} alt="Runnalytics" />
-                    </div>
-                    <div className="timeline-entry-title">Runnalytics: Strava Analytics Dashboard</div>
-                    <div className="timeline-entry-duration">Dec '25 - Jan '26</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
           </div>
         </div>
       </section>
