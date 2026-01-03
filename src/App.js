@@ -1892,19 +1892,26 @@ export default function Portfolio() {
                     <div className="about-present-indicator" style={{ top: `${(() => {
                       const now = new Date();
                       const currentYear = now.getFullYear();
-                      const currentMonth = now.getMonth();
                       const yearFlexes = {
                         2019: 0.5, 2020: 0.5, 2021: 0.5, 2022: 3,
                         2023: 2.2, 2024: 1.0, 2025: 1.7, 2026: 1, 2027: 0.5
                       };
-                      const totalFlex = 11.45;
+                      const totalFlex = 10.95; // 0.5+0.5+0.5+3+2.2+1.0+1.7+1+0.5+0.05
                       let flexSum = 0;
+                      
+                      // Add complete years before current year
                       for (let year = 2019; year < currentYear; year++) {
                         flexSum += yearFlexes[year];
                       }
-                      const monthsIntoYear = currentMonth + 1;
-                      const currentYearProgress = monthsIntoYear / 12;
-                      flexSum += yearFlexes[currentYear] * currentYearProgress;
+                      
+                      // Calculate day-based progress through current year
+                      const startOfYear = new Date(currentYear, 0, 1);
+                      const endOfYear = new Date(currentYear + 1, 0, 1);
+                      const totalDays = (endOfYear - startOfYear) / (1000 * 60 * 60 * 24);
+                      const daysPassed = (now - startOfYear) / (1000 * 60 * 60 * 24);
+                      const currentYearProgress = daysPassed / totalDays;
+                      
+                      flexSum += (yearFlexes[currentYear] || 0) * currentYearProgress;
                       const percentage = (flexSum / totalFlex) * 100;
                       return percentage;
                     })()}%` }}>
