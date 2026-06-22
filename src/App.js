@@ -39,6 +39,14 @@ export default function Portfolio() {
 
   const projects = [
     {
+      title: "Multimodal Voice Journal Sentiment Analyzer",
+      description: "Deep learning system combining audio (MFCC + BiLSTM + CNN) and text (embeddings + BiLSTM + CNN) modalities with attention-based fusion for speech emotion recognition. Achieves 90.6% accuracy on IEMOCAP, exceeding the original EmoTech paper's 84%. Features Whisper integration for real-time transcription and Gradio web interface with longitudinal mood tracking.",
+      tech: ["PyTorch", "Librosa", "OpenAI Whisper", "Gradio", "BiLSTM", "CNN", "Attention Mechanism"],
+      date: "Feb 2026 - Apr 2026",
+      internalLink: "/projects/emotech",
+      highlight: "Artificial Intelligence"
+    },
+    {
       title: "Runnalytics: Strava Running Analytics Dashboard",
       description: "End-to-end data pipeline to analyze exported Strava data with ML-based workout classification, heart rate/elevation correlation insights, and interactive dashboards tracking running improvement over time.",
       tech: ["Python", "Flask", "JavaScript", "Data Analysis", "NumPy", "Pandas", "scikit-learn"],
@@ -744,12 +752,12 @@ export default function Portfolio() {
         .about-timeline-year.year-2019 { flex: 0.5; }
         .about-timeline-year.year-2020 { flex: 0.5; }
         .about-timeline-year.year-2021 { flex: 0.5; }
-        .about-timeline-year.year-2022 { flex: 3; }
-        .about-timeline-year.year-2023 { flex: 2.2; }
+        .about-timeline-year.year-2022 { flex: 4; }
+        .about-timeline-year.year-2023 { flex: 3; }
         .about-timeline-year.year-2024 { flex: 1.0; }
         .about-timeline-year.year-2025 { flex: 1.7; }
-        .about-timeline-year.year-2026 { flex: 1; }
-        .about-timeline-year.year-2027 { flex: 0.5; }
+        .about-timeline-year.year-2026 { flex: 5.0; }
+        .about-timeline-year.year-2027 { flex: 1.2; }
         .about-timeline-year.year-end { 
           flex: 0.05; 
           border-top: 2px solid rgba(0, 0, 0, 0.15);
@@ -1893,10 +1901,10 @@ export default function Portfolio() {
                       const now = new Date();
                       const currentYear = now.getFullYear();
                       const yearFlexes = {
-                        2019: 0.5, 2020: 0.5, 2021: 0.5, 2022: 3,
-                        2023: 2.2, 2024: 1.0, 2025: 1.7, 2026: 1, 2027: 0.5
+                        2019: 0.5, 2020: 0.5, 2021: 0.5, 2022: 4,
+                        2023: 3, 2024: 1.0, 2025: 1.7, 2026: 5.0, 2027: 1.2
                       };
-                      const totalFlex = 10.95; // 0.5+0.5+0.5+3+2.2+1.0+1.7+1+0.5+0.05
+                      const totalFlex = 17.45; // 0.5+0.5+0.5+4+3+1.0+1.7+5.0+1.2+0.05
                       let flexSum = 0;
                       
                       // Add complete years before current year
@@ -1921,14 +1929,14 @@ export default function Portfolio() {
                     <div className="about-timeline-tracks">
                       {/* Track 1: Education */}
                       <div className="about-timeline-track">
-                        <div className="about-timeline-entry" style={{ top: '0%', height: '48.9%' }}>
+                        <div className="about-timeline-entry" style={{ top: '0%', height: '40%' }}>
                           <div className="about-timeline-entry-icon">
                             <img src={process.env.PUBLIC_URL + "/mit-logo.png"} alt="MIT" />
                           </div>
                           <div className="about-timeline-entry-title">Bachelors in Computer Science and Engineering</div>
                           <div className="about-timeline-entry-duration">Jul '19 - Jul '23</div>
                         </div>
-                        <div className="about-timeline-entry current" style={{ top: '75.5%', height: '22%' }}>
+                        <div className="about-timeline-entry current" style={{ top: '59%', height: '41%' }}>
                           <div className="about-timeline-entry-icon">
                             <img src={process.env.PUBLIC_URL + "/northeastern-logo.png"} alt="Northeastern" />
                           </div>
@@ -1939,24 +1947,26 @@ export default function Portfolio() {
 
                       {/* Track 2: Experience */}
                       <div className="about-timeline-track">
-                        <div className="about-timeline-entry" style={{ top: '23%', height: '3%', minHeight: '100px' }}>
+                        <div className="about-timeline-entry" style={{ top: '18%', height: '10%', minHeight: '100px' }}>
                           <div className="about-timeline-entry-icon">
                             <img src={process.env.PUBLIC_URL + "/questt-logo.png"} alt="Questt" />
                           </div>
                           <div className="about-timeline-entry-title">Data Engineer Intern @ Questt</div>
                           <div className="about-timeline-entry-duration">May - Jul '22</div>
                         </div>
-                        <div className="about-timeline-entry" style={{ top: '48.9%', height: '26.6%' }}>
+                        <div className="about-timeline-entry" style={{ top: '41%', height: '18%' }}>
                           <div className="about-timeline-entry-icon">
                             <img src={process.env.PUBLIC_URL + "/shell-logo.png"} alt="Shell" />
                           </div>
                           <div className="about-timeline-entry-title">Software QA Engineer @ Shell</div>
                           <div className="about-timeline-entry-duration">Aug '23 - Aug '25</div>
                         </div>
-                        <div className="about-timeline-entry future" style={{ top: '85%', height: '10%', minHeight: '85px' }}>
-                          <div className="about-timeline-entry-icon">🔍</div>
-                          <div className="about-timeline-entry-title">Seeking co-ops</div>
-                          <div className="about-timeline-entry-duration">April '26 onwards</div>
+                        <div className="about-timeline-entry" style={{ top: '78%', height: '15%' }}>
+                          <div className="about-timeline-entry-icon">
+                            <img src={process.env.PUBLIC_URL + "/massdot-logo.png"} alt="MassDOT" />
+                          </div>
+                          <div className="about-timeline-entry-title">Business Intelligence Co-op @ MassDOT</div>
+                          <div className="about-timeline-entry-duration">Jul '26 - Dec '26</div>
                         </div>
                       </div>
 
@@ -1964,7 +1974,7 @@ export default function Portfolio() {
                       <div className="about-timeline-track">
                         <div 
                           className="about-timeline-entry clickable" 
-                          style={{ top: '13%', height: '6%', minHeight: '85px' }}
+                          style={{ top: '9%', height: '8%', minHeight: '85px' }}
                           onClick={() => {
                             sessionStorage.setItem('portfolioScrollPosition', window.scrollY.toString());
                             navigate('/projects/habitual');
@@ -1978,7 +1988,7 @@ export default function Portfolio() {
                         </div>
                         <div 
                           className="about-timeline-entry clickable" 
-                          style={{ top: '37%', height: '11.9%', minHeight: '100px' }}
+                          style={{ top: '32%', height: '8%', minHeight: '100px' }}
                           onClick={() => {
                             sessionStorage.setItem('portfolioScrollPosition', window.scrollY.toString());
                             navigate('/projects/diffusion');
@@ -1992,7 +2002,7 @@ export default function Portfolio() {
                         </div>
                         <div 
                           className="about-timeline-entry clickable" 
-                          style={{ top: '74%', height: '5%', minHeight: '100px' }}
+                          style={{ top: '63%', height: '5%', minHeight: '100px' }}
                           onClick={() => {
                             sessionStorage.setItem('portfolioScrollPosition', window.scrollY.toString());
                             navigate('/projects/runnalytics');
