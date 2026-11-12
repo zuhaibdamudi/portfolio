@@ -1793,25 +1793,28 @@ export default function Portfolio() {
         </div>
         <ul className="nav-links">
           <li>
-            <a 
-              className={activeSection === 'about' ? 'active' : ''} 
-              onClick={() => scrollToSection('about')}
+            <a
+              href="#about"
+              className={activeSection === 'about' ? 'active' : ''}
+              onClick={(e) => { e.preventDefault(); scrollToSection('about'); }}
             >
               About
             </a>
           </li>
           <li>
-            <a 
-              className={activeSection === 'projects' ? 'active' : ''} 
-              onClick={() => scrollToSection('projects')}
+            <a
+              href="#projects"
+              className={activeSection === 'projects' ? 'active' : ''}
+              onClick={(e) => { e.preventDefault(); scrollToSection('projects'); }}
             >
               Projects
             </a>
           </li>
           <li>
-            <a 
-              className={activeSection === 'contact' ? 'active' : ''} 
-              onClick={() => scrollToSection('contact')}
+            <a
+              href="#contact"
+              className={activeSection === 'contact' ? 'active' : ''}
+              onClick={(e) => { e.preventDefault(); scrollToSection('contact'); }}
             >
               Contact
             </a>
@@ -2110,7 +2113,7 @@ export default function Portfolio() {
             </svg>
           </a>
         </div>
-        <p>© 2025 Mohammed Zuhaib Damudi.</p>
+        <p>© 2026 Mohammed Zuhaib Damudi.</p>
       </footer>
 
       {/* Cursor Effect */}

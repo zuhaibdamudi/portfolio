@@ -619,7 +619,7 @@ export default function DiffusionProject() {
 
       {/* Footer */}
       <footer className="project-footer">
-        <p>© 2025 Mohammed Zuhaib Damudi</p>
+        <p>© 2026 Mohammed Zuhaib Damudi</p>
       </footer>
     </div>
   );
